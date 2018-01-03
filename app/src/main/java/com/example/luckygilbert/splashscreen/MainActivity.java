@@ -1,5 +1,6 @@
 package com.example.luckygilbert.splashscreen;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -12,9 +13,9 @@ import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
 
-    SQLiteOpenHelper dbhelper;
+    /*SQLiteOpenHelper dbhelper;
     SQLiteDatabase db;
-    Cursor cursor;
+    Cursor cursor;*/
 
 
     @Override
@@ -26,11 +27,46 @@ public class MainActivity extends AppCompatActivity {
         final EditText _txtpassword = findViewById(R.id.passwad);
         Button _logBtn = findViewById(R.id.login_btn);
 
-    dbhelper = new SQLiteDBHelper(this);
-       /* SQLiteDatabase db = new dbhelper.getReadableDatabase();*/
+        _logBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view)
+            {
+                if(_txtUserName.getText().toString().trim().length()==0)
+                {
+                    _txtUserName.setError("you have entered a wrong user name");
+                    _txtUserName.requestFocus();
+                }
+
+                if(_txtpassword.getText().toString().trim().length()==0)
+                {
+                    _txtpassword.setError("you have entered a wrong password");
+                    _txtpassword.requestFocus();
+                }
+                else
+                    {
+                        Intent intent = new Intent(getApplicationContext(),LoginSucessActivity.class);
+                        startActivity(intent);
+                    }
 
 
-        _logBtn.setOnClickListener(new View.OnClickListener()
+            }
+        });
+
+
+
+
+
+
+
+
+
+
+
+   /* dbhelper = new SQLiteDBHelper(this);
+       *//*SQLiteDatabase db = new dbhelper.getReadableDatabase();*/
+
+
+       /* _logBtn.setOnClickListener(new View.OnClickListener()
         {
 
             @Override
@@ -38,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
+*/
 
     }
 }
